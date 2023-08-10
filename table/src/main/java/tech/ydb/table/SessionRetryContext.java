@@ -15,6 +15,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 import com.google.common.util.concurrent.MoreExecutors;
 
+import tech.ydb.core.Issue;
 import tech.ydb.core.Result;
 import tech.ydb.core.Status;
 import tech.ydb.core.StatusCode;
@@ -80,11 +81,26 @@ public class SessionRetryContext {
         return task.getFuture();
     }
 
+    private boolean canRetry(Status status) {
+        StatusCode statusCode = status.getCode();
+        boolean retryable = statusCode.isRetryable(idempotent, retryNotFound);
+        if (!retryable) { // temporary hack for KIKIMR-13694
+            if (StatusCode.TIMEOUT.equals(statusCode)) {
+                for (Issue issue : status.getIssues()) {
+                    if (issue.getCode() == 200506) { // #200506 tx state unknown
+                        retryable = true;
+                        break;
+                    }
+                }
+            }
+        }
+        return retryable;
+    }
+
     private boolean canRetry(Throwable t) {
         Throwable cause = Async.unwrapCompletionException(t);
         if (cause instanceof UnexpectedResultException) {
-            StatusCode statusCode = ((UnexpectedResultException) cause).getStatus().getCode();
-            return statusCode.isRetryable(idempotent, retryNotFound);
+            return canRetry(((UnexpectedResultException) cause).getStatus());
         }
         return false;
     }
@@ -120,6 +136,7 @@ public class SessionRetryContext {
             case NOT_FOUND:
             case OVERLOADED:
             case CLIENT_RESOURCE_EXHAUSTED:
+            case TIMEOUT: // temporary hack for KIKIMR-13694
             default:
                 // Slow backoff
                 return slowBackoffTimeMillis(retryNumber);
@@ -154,7 +171,7 @@ public class SessionRetryContext {
             return promise;
         }
 
-        abstract StatusCode toStatusCode(R result);
+        abstract Status toStatus(R result);
         abstract R toFailedResult(Result<Session> sessionResult);
 
         private long ms() {
@@ -190,7 +207,7 @@ public class SessionRetryContext {
 
         private void acceptSession(@Nonnull Result<Session> sessionResult) {
             if (!sessionResult.isSuccess()) {
-                handleError(sessionResult.getStatus().getCode(), toFailedResult(sessionResult));
+                handleError(sessionResult.getStatus(), toFailedResult(sessionResult));
                 return;
             }
 
@@ -205,12 +222,13 @@ public class SessionRetryContext {
                             return;
                         }
 
-                        StatusCode statusCode = toStatusCode(fnResult);
+                        Status status = toStatus(fnResult);
+                        StatusCode statusCode = status.getCode();
                         if (statusCode == StatusCode.SUCCESS) {
                             handler.onSuccess(SessionRetryContext.this, retryNumber.get(), ms());
                             promise.complete(fnResult);
                         } else {
-                            handleError(statusCode, fnResult);
+                            handleError(status, fnResult);
                         }
                     } catch (Throwable unexpected) {
                         handler.onError(SessionRetryContext.this, unexpected, retryNumber.get(), ms());
@@ -226,9 +244,10 @@ public class SessionRetryContext {
             sessionSupplier.getScheduler().schedule(this, delayMillis, TimeUnit.MILLISECONDS);
         }
 
-        private void handleError(@Nonnull StatusCode code, R result) {
+        private void handleError(@Nonnull Status status, R result) {
+            StatusCode code = status.getCode();
             // Check retrayable status
-            if (!code.isRetryable(idempotent, retryNotFound)) {
+            if (!canRetry(status)) {
                 handler.onError(SessionRetryContext.this, code, retryNumber.get(), ms());
                 promise.complete(result);
                 return;
@@ -274,8 +293,8 @@ public class SessionRetryContext {
         }
 
         @Override
-        StatusCode toStatusCode(Result<T> result) {
-            return result.getStatus().getCode();
+        Status toStatus(Result<T> result) {
+            return result.getStatus();
         }
 
         @Override
@@ -293,8 +312,8 @@ public class SessionRetryContext {
         }
 
         @Override
-        StatusCode toStatusCode(Status status) {
-            return status.getCode();
+        Status toStatus(Status status) {
+            return status;
         }
 
         @Override
