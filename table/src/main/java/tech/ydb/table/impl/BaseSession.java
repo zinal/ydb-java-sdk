@@ -550,6 +550,17 @@ public abstract class BaseSession implements Session {
             DescribeTableSettings describeTableSettings
     ) {
         TableDescription.Builder description = TableDescription.newBuilder();
+        description.setTemporary(result.getTemporary());
+        switch (result.getStoreType()) {
+            case STORE_TYPE_ROW:
+                description.setStoreType(TableDescription.StoreType.ROW);
+                break;
+            case STORE_TYPE_COLUMN:
+                description.setStoreType(TableDescription.StoreType.COLUMN);
+                break;
+            default:
+                description.setStoreType(TableDescription.StoreType.UNSPECIFIED);
+        }
         for (int i = 0; i < result.getColumnsCount(); i++) {
             YdbTable.ColumnMeta column = result.getColumns(i);
             description.addNonnullColumn(column.getName(), ProtoType.fromPb(column.getType()), column.getFamily());
@@ -564,6 +575,10 @@ public abstract class BaseSession implements Session {
 
             if (idx.hasGlobalAsyncIndex()) {
                 description.addGlobalAsyncIndex(idx.getName(), idx.getIndexColumnsList(), idx.getDataColumnsList());
+            }
+
+            if (idx.hasGlobalUniqueIndex()) {
+                description.addGlobalUniqueIndex(idx.getName(), idx.getIndexColumnsList(), idx.getDataColumnsList());
             }
         }
         YdbTable.TableStats tableStats = result.getTableStats();

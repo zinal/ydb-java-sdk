@@ -38,6 +38,9 @@ public class TableDescription {
 
     private final TableTtl tableTtl;
 
+    private final boolean temporary;
+    private final StoreType storeType;
+
     private TableDescription(Builder builder) {
         this.primaryKeys = ImmutableList.copyOf(builder.primaryKeys);
         this.columns = builder.buildColumns();
@@ -49,6 +52,8 @@ public class TableDescription {
         this.partitioningSettings = builder.partitioningSettings;
         this.partitionStats = ImmutableList.copyOf(builder.partitionStats);
         this.tableTtl = builder.ttlSettings;
+        this.temporary = builder.temporary;
+        this.storeType = builder.storeType;
     }
 
     public static Builder newBuilder() {
@@ -93,6 +98,14 @@ public class TableDescription {
         return tableTtl;
     }
 
+    public boolean isTemporary() {
+        return temporary;
+    }
+
+    public StoreType getStoreType() {
+        return storeType;
+    }
+
     /**
      * BUILDER
      */
@@ -108,6 +121,8 @@ public class TableDescription {
         private PartitioningSettings partitioningSettings = null;
         private final List<PartitionStats> partitionStats = new ArrayList<>();
         private TableTtl ttlSettings = new TableTtl();
+        private boolean temporary = false;
+        private StoreType storeType = StoreType.UNSPECIFIED;
 
         public Builder addNonnullColumn(String name, Type type) {
             return addNonnullColumn(name, type, null);
@@ -192,6 +207,16 @@ public class TableDescription {
             return this;
         }
 
+        public Builder addGlobalUniqueIndex(String name, List<String> columns) {
+            indexes.add(new TableIndex(name, columns, TableIndex.Type.GLOBAL_UNIQUE));
+            return this;
+        }
+
+        public Builder addGlobalUniqueIndex(String name, List<String> columns, List<String> dataColumns) {
+            indexes.add(new TableIndex(name, columns, dataColumns, TableIndex.Type.GLOBAL_UNIQUE));
+            return this;
+        }
+
         public Builder setTableStats(TableStats tableStats) {
             this.tableStats = tableStats;
             return this;
@@ -214,6 +239,16 @@ public class TableDescription {
 
         public Builder setTtlSettings(int ttlModeCase, String columnName, int expireAfterSeconds) {
             this.ttlSettings = new TableTtl(TtlMode.forCase(ttlModeCase), columnName, expireAfterSeconds);
+            return this;
+        }
+
+        public Builder setTemporary(boolean temporary) {
+            this.temporary = temporary;
+            return this;
+        }
+
+        public Builder setStoreType(StoreType storeType) {
+            this.storeType = storeType;
             return this;
         }
 
@@ -305,5 +340,11 @@ public class TableDescription {
             return storeSize;
         }
 
+    }
+
+    public enum StoreType {
+        UNSPECIFIED,
+        ROW,
+        COLUMN
     }
 }
