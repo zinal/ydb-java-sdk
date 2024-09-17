@@ -12,9 +12,7 @@ public class TableIndex {
 
     public enum Type {
         GLOBAL,
-
         GLOBAL_ASYNC,
-
         GLOBAL_UNIQUE,
     }
 

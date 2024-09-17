@@ -1,3 +1,13 @@
+## 2.3.0 ##
+
+* Core: fixed JWT token parser
+* Query: updated TableClientimplementation
+
+## 2.2.11 ##
+
+* Table: Add unique index support
+* Table: Updated table TTL implementation
+
 ## 2.2.10 ##
 
 * Core: fixed infinite wainting for grpc channel ready state after reconnect

@@ -120,7 +120,7 @@ public class TableDescription {
         private TableStats tableStats = null;
         private PartitioningSettings partitioningSettings = null;
         private final List<PartitionStats> partitionStats = new ArrayList<>();
-        private TableTtl ttlSettings = new TableTtl();
+        private TableTtl ttlSettings = TableTtl.notSet();
         private boolean temporary = false;
         private StoreType storeType = StoreType.UNSPECIFIED;
 
@@ -197,6 +197,16 @@ public class TableDescription {
             return this;
         }
 
+        public Builder addGlobalUniqueIndex(String name, List<String> columns) {
+            indexes.add(new TableIndex(name, columns, TableIndex.Type.GLOBAL_UNIQUE));
+            return this;
+        }
+
+        public Builder addGlobalUniqueIndex(String name, List<String> columns, List<String> dataColumns) {
+            indexes.add(new TableIndex(name, columns, dataColumns, TableIndex.Type.GLOBAL_UNIQUE));
+            return this;
+        }
+
         public Builder addGlobalAsyncIndex(String name, List<String> columns) {
             indexes.add(new TableIndex(name, columns, TableIndex.Type.GLOBAL_ASYNC));
             return this;
@@ -237,8 +247,14 @@ public class TableDescription {
             return this;
         }
 
+        @Deprecated
         public Builder setTtlSettings(int ttlModeCase, String columnName, int expireAfterSeconds) {
             this.ttlSettings = new TableTtl(TtlMode.forCase(ttlModeCase), columnName, expireAfterSeconds);
+            return this;
+        }
+
+        public Builder setTtlSettings(TableTtl ttl) {
+            this.ttlSettings = ttl;
             return this;
         }
 
