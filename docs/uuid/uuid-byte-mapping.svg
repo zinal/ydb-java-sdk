@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 920" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#455A64"/>
+    </marker>
+    <style>
+      .title { font-size: 22px; font-weight: 700; fill: #1a237e; }
+      .subtitle { font-size: 13px; fill: #546e7a; }
+      .hdr { font-size: 12px; font-weight: 600; fill: #37474f; }
+      .cell { font-size: 13px; font-weight: 600; fill: #263238; }
+      .idx { font-size: 11px; fill: #607d8b; }
+      .rule { font-size: 11px; fill: #455a64; }
+      .note { font-size: 11px; fill: #546e7a; }
+      .box { fill: #eceff1; stroke: #90a4ae; stroke-width: 1.2; }
+      .swap { fill: #fff8e1; stroke: #ffb300; }
+      .rev { fill: #e8f5e9; stroke: #66bb6a; }
+      .same { fill: #e3f2fd; stroke: #42a5f5; }
+    </style>
+  </defs>
+
+  <text x="550" y="34" text-anchor="middle" class="title">!>>B25BAB285 109B>2: Network Order UUID î YDB (Microsoft GUID mixed-endian)</text>
+  <text x="550" y="56" text-anchor="middle" class="subtitle">@8<5@: 123e4567-e89b-12d3-a456-426614174000 ∑ A>@B8@>2:0 YDB: 3 2 1 0  5 4  7 6  8 9 A B C D E F</text>
+
+  <!-- RFC strip -->
+  <text x="40" y="92" class="hdr">RFC / Network Order (109BK 015)</text>
+  <g transform="translate(40, 100)">
+    <g id="rfc-bytes">
+      <rect x="0" y="0" width="48" height="40" class="box"/><text x="24" y="26" text-anchor="middle" class="cell">12</text><text x="24" y="52" text-anchor="middle" class="idx">0</text>
+      <rect x="52" y="0" width="48" height="40" class="box"/><text x="76" y="26" text-anchor="middle" class="cell">3e</text><text x="76" y="52" text-anchor="middle" class="idx">1</text>
+      <rect x="104" y="0" width="48" height="40" class="box"/><text x="128" y="26" text-anchor="middle" class="cell">45</text><text x="128" y="52" text-anchor="middle" class="idx">2</text>
+      <rect x="156" y="0" width="48" height="40" class="box"/><text x="180" y="26" text-anchor="middle" class="cell">67</text><text x="180" y="52" text-anchor="middle" class="idx">3</text>
+      <rect x="220" y="0" width="48" height="40" class="swap"/><text x="244" y="26" text-anchor="middle" class="cell">e8</text><text x="244" y="52" text-anchor="middle" class="idx">4</text>
+      <rect x="272" y="0" width="48" height="40" class="swap"/><text x="296" y="26" text-anchor="middle" class="cell">9b</text><text x="296" y="52" text-anchor="middle" class="idx">5</text>
+      <rect x="324" y="0" width="48" height="40" class="swap"/><text x="348" y="26" text-anchor="middle" class="cell">12</text><text x="348" y="52" text-anchor="middle" class="idx">6</text>
+      <rect x="376" y="0" width="48" height="40" class="swap"/><text x="400" y="26" text-anchor="middle" class="cell">d3</text><text x="400" y="52" text-anchor="middle" class="idx">7</text>
+      <rect x="440" y="0" width="48" height="40" class="same"/><text x="464" y="26" text-anchor="middle" class="cell">a4</text><text x="464" y="52" text-anchor="middle" class="idx">8</text>
+      <rect x="492" y="0" width="48" height="40" class="same"/><text x="516" y="26" text-anchor="middle" class="cell">56</text><text x="516" y="52" text-anchor="middle" class="idx">9</text>
+      <rect x="544" y="0" width="48" height="40" class="same"/><text x="568" y="26" text-anchor="middle" class="cell">42</text><text x="568" y="52" text-anchor="middle" class="idx">10</text>
+      <rect x="596" y="0" width="48" height="40" class="same"/><text x="620" y="26" text-anchor="middle" class="cell">66</text><text x="620" y="52" text-anchor="middle" class="idx">11</text>
+      <rect x="648" y="0" width="48" height="40" class="same"/><text x="672" y="26" text-anchor="middle" class="cell">14</text><text x="672" y="52" text-anchor="middle" class="idx">12</text>
+      <rect x="700" y="0" width="48" height="40" class="same"/><text x="724" y="26" text-anchor="middle" class="cell">17</text><text x="724" y="52" text-anchor="middle" class="idx">13</text>
+      <rect x="752" y="0" width="48" height="40" class="same"/><text x="776" y="26" text-anchor="middle" class="cell">40</text><text x="776" y="52" text-anchor="middle" class="idx">14</text>
+      <rect x="804" y="0" width="48" height="40" class="same"/><text x="828" y="26" text-anchor="middle" class="cell">00</text><text x="828" y="52" text-anchor="middle" class="idx">15</text>
+    </g>
+    <text x="430" y="78" text-anchor="middle" class="note">MSB (8 109B)  mixed-endian ?5@5AB0=>2:0</text>
+    <text x="626" y="78" text-anchor="middle" class="note">LSB (8 109B)  ?>@O4>: A>E@0=O5BAO</text>
+  </g>
+
+  <!-- arrows zone -->
+  <g stroke="#455A64" stroke-width="1.2" fill="none" marker-end="url(#arrow)">
+    <path d="M 220 170 C 220 210, 220 210, 220 250"/>
+    <path d="M 272 170 C 272 210, 220 230, 168 250"/>
+    <path d="M 324 170 C 324 210, 272 230, 220 250"/>
+    <path d="M 376 170 C 376 210, 324 230, 272 250"/>
+    <path d="M 428 170 C 428 210, 376 230, 324 250"/>
+    <path d="M 480 170 C 480 210, 428 230, 376 250"/>
+    <path d="M 532 170 C 532 210, 480 230, 428 250"/>
+    <path d="M 584 170 C 584 210, 532 230, 480 250"/>
+    <path d="M 504 170 L 504 250"/>
+    <path d="M 556 170 L 556 250"/>
+    <path d="M 608 170 L 608 250"/>
+    <path d="M 660 170 L 660 250"/>
+    <path d="M 712 170 L 712 250"/>
+    <path d="M 764 170 L 764 250"/>
+    <path d="M 816 170 L 816 250"/>
+    <path d="M 868 170 L 868 250"/>
+  </g>
+
+  <!-- YDB strip -->
+  <text x="40" y="238" class="hdr">YDB wire / 2=CB@5==89 D>@<0B (109BK 015, ?>@O4>: A>@B8@>2:8)</text>
+  <g transform="translate(40, 246)">
+    <rect x="0" y="0" width="48" height="40" class="box"/><text x="24" y="26" text-anchor="middle" class="cell">67</text><text x="24" y="52" text-anchor="middle" class="idx">0ê3</text>
+    <rect x="52" y="0" width="48" height="40" class="box"/><text x="76" y="26" text-anchor="middle" class="cell">45</text><text x="76" y="52" text-anchor="middle" class="idx">1ê2</text>
+    <rect x="104" y="0" width="48" height="40" class="box"/><text x="128" y="26" text-anchor="middle" class="cell">3e</text><text x="128" y="52" text-anchor="middle" class="idx">2ê1</text>
+    <rect x="156" y="0" width="48" height="40" class="box"/><text x="180" y="26" text-anchor="middle" class="cell">12</text><text x="180" y="52" text-anchor="middle" class="idx">3ê0</text>
+    <rect x="220" y="0" width="48" height="40" class="swap"/><text x="244" y="26" text-anchor="middle" class="cell">9b</text><text x="244" y="52" text-anchor="middle" class="idx">4ê5</text>
+    <rect x="272" y="0" width="48" height="40" class="swap"/><text x="296" y="26" text-anchor="middle" class="cell">e8</text><text x="296" y="52" text-anchor="middle" class="idx">5ê4</text>
+    <rect x="324" y="0" width="48" height="40" class="swap"/><text x="348" y="26" text-anchor="middle" class="cell">d3</text><text x="348" y="52" text-anchor="middle" class="idx">6ê7</text>
+    <rect x="376" y="0" width="48" height="40" class="swap"/><text x="400" y="26" text-anchor="middle" class="cell">12</text><text x="400" y="52" text-anchor="middle" class="idx">7ê6</text>
+    <rect x="440" y="0" width="48" height="40" class="same"/><text x="464" y="26" text-anchor="middle" class="cell">a4</text><text x="464" y="52" text-anchor="middle" class="idx">8ê8</text>
+    <rect x="492" y="0" width="48" height="40" class="same"/><text x="516" y="26" text-anchor="middle" class="cell">56</text><text x="516" y="52" text-anchor="middle" class="idx">9ê9</text>
+    <rect x="544" y="0" width="48" height="40" class="same"/><text x="568" y="26" text-anchor="middle" class="cell">42</text><text x="568" y="52" text-anchor="middle" class="idx">10ê10</text>
+    <rect x="596" y="0" width="48" height="40" class="same"/><text x="620" y="26" text-anchor="middle" class="cell">66</text><text x="620" y="52" text-anchor="middle" class="idx">11ê11</text>
+    <rect x="648" y="0" width="48" height="40" class="same"/><text x="672" y="26" text-anchor="middle" class="cell">14</text><text x="672" y="52" text-anchor="middle" class="idx">12ê12</text>
+    <rect x="700" y="0" width="48" height="40" class="same"/><text x="724" y="26" text-anchor="middle" class="cell">17</text><text x="724" y="52" text-anchor="middle" class="idx">13ê13</text>
+    <rect x="752" y="0" width="48" height="40" class="same"/><text x="776" y="26" text-anchor="middle" class="cell">40</text><text x="776" y="52" text-anchor="middle" class="idx">14ê14</text>
+    <rect x="804" y="0" width="48" height="40" class="same"/><text x="828" y="26" text-anchor="middle" class="cell">00</text><text x="828" y="52" text-anchor="middle" class="idx">15ê15</text>
+  </g>
+
+  <!-- Table -->
+  <text x="40" y="340" class="hdr">"01;8F0 A>>B25BAB28O 8=45:A>2</text>
+  <g transform="translate(40, 352)">
+    <rect x="0" y="0" width="1020" height="28" fill="#cfd8dc"/>
+    <text x="70" y="19" text-anchor="middle" class="hdr">RFC idx</text>
+    <text x="200" y="19" text-anchor="middle" class="hdr">RFC 109B (?@8<5@)</text>
+    <text x="420" y="19" text-anchor="middle" class="hdr">@028;> MSB / LSB</text>
+    <text x="640" y="19" text-anchor="middle" class="hdr">YDB idx</text>
+    <text x="770" y="19" text-anchor="middle" class="hdr">YDB 109B (?@8<5@)</text>
+    <text x="930" y="19" text-anchor="middle" class="hdr">@C??0</text>
+
+    <!-- rows -->
+    <g class="rule">
+      <rect x="0" y="28" width="1020" height="26" fill="#fff" stroke="#cfd8dc"/>
+      <text x="70" y="45" text-anchor="middle">0</text><text x="200" y="45" text-anchor="middle">12</text><text x="420" y="45" text-anchor="middle">reverse 32-bit time_low</text><text x="640" y="45" text-anchor="middle">3</text><text x="770" y="45" text-anchor="middle">67</text><text x="930" y="45" text-anchor="middle">MSB</text>
+      <rect x="0" y="54" width="1020" height="26" fill="#fafafa" stroke="#cfd8dc"/>
+      <text x="70" y="71" text-anchor="middle">1</text><text x="200" y="71" text-anchor="middle">3e</text><text x="420" y="71" text-anchor="middle">reverse 32-bit time_low</text><text x="640" y="71" text-anchor="middle">2</text><text x="770" y="71" text-anchor="middle">45</text><text x="930" y="71" text-anchor="middle">MSB</text>
+      <rect x="0" y="80" width="1020" height="26" fill="#fff" stroke="#cfd8dc"/>
+      <text x="70" y="97" text-anchor="middle">2</text><text x="200" y="97" text-anchor="middle">45</text><text x="420" y="97" text-anchor="middle">reverse 32-bit time_low</text><text x="640" y="97" text-anchor="middle">1</text><text x="770" y="97" text-anchor="middle">3e</text><text x="930" y="97" text-anchor="middle">MSB</text>
+      <rect x="0" y="106" width="1020" height="26" fill="#fafafa" stroke="#cfd8dc"/>
+      <text x="70" y="123" text-anchor="middle">3</text><text x="200" y="123" text-anchor="middle">67</text><text x="420" y="123" text-anchor="middle">reverse 32-bit time_low</text><text x="640" y="123" text-anchor="middle">0</text><text x="770" y="123" text-anchor="middle">12</text><text x="930" y="123" text-anchor="middle">MSB</text>
+      <rect x="0" y="132" width="1020" height="26" fill="#fff" stroke="#cfd8dc"/>
+      <text x="70" y="149" text-anchor="middle">4</text><text x="200" y="149" text-anchor="middle">e8</text><text x="420" y="149" text-anchor="middle">swap 16-bit time_mid</text><text x="640" y="149" text-anchor="middle">5</text><text x="770" y="149" text-anchor="middle">9b</text><text x="930" y="149" text-anchor="middle">MSB</text>
+      <rect x="0" y="158" width="1020" height="26" fill="#fafafa" stroke="#cfd8dc"/>
+      <text x="70" y="175" text-anchor="middle">5</text><text x="200" y="175" text-anchor="middle">9b</text><text x="420" y="175" text-anchor="middle">swap 16-bit time_mid</text><text x="640" y="175" text-anchor="middle">4</text><text x="770" y="175" text-anchor="middle">e8</text><text x="930" y="175" text-anchor="middle">MSB</text>
+      <rect x="0" y="184" width="1020" height="26" fill="#fff" stroke="#cfd8dc"/>
+      <text x="70" y="201" text-anchor="middle">6</text><text x="200" y="201" text-anchor="middle">12</text><text x="420" y="201" text-anchor="middle">swap 16-bit time_hi_and_version</text><text x="640" y="201" text-anchor="middle">7</text><text x="770" y="201" text-anchor="middle">d3</text><text x="930" y="201" text-anchor="middle">MSB</text>
+      <rect x="0" y="210" width="1020" height="26" fill="#fafafa" stroke="#cfd8dc"/>
+      <text x="70" y="227" text-anchor="middle">7</text><text x="200" y="227" text-anchor="middle">d3</text><text x="420" y="227" text-anchor="middle">swap 16-bit time_hi_and_version</text><text x="640" y="227" text-anchor="middle">6</text><text x="770" y="227" text-anchor="middle">12</text><text x="930" y="227" text-anchor="middle">MSB</text>
+      <rect x="0" y="236" width="1020" height="26" fill="#fff" stroke="#cfd8dc"/>
+      <text x="70" y="253" text-anchor="middle">8</text><text x="200" y="253" text-anchor="middle">a4</text><text x="420" y="253" text-anchor="middle">157 ?5@5AB0=>2:8 (LSB)</text><text x="640" y="253" text-anchor="middle">8</text><text x="770" y="253" text-anchor="middle">a4</text><text x="930" y="253" text-anchor="middle">LSB</text>
+      <rect x="0" y="262" width="1020" height="26" fill="#fafafa" stroke="#cfd8dc"/>
+      <text x="70" y="279" text-anchor="middle">9</text><text x="200" y="279" text-anchor="middle">56</text><text x="420" y="279" text-anchor="middle">157 ?5@5AB0=>2:8 (LSB)</text><text x="640" y="279" text-anchor="middle">9</text><text x="770" y="279" text-anchor="middle">56</text><text x="930" y="279" text-anchor="middle">LSB</text>
+      <rect x="0" y="288" width="1020" height="26" fill="#fff" stroke="#cfd8dc"/>
+      <text x="70" y="305" text-anchor="middle">10</text><text x="200" y="305" text-anchor="middle">42</text><text x="420" y="305" text-anchor="middle">157 ?5@5AB0=>2:8 (LSB)</text><text x="640" y="305" text-anchor="middle">10</text><text x="770" y="305" text-anchor="middle">42</text><text x="930" y="305" text-anchor="middle">LSB</text>
+      <rect x="0" y="314" width="1020" height="26" fill="#fafafa" stroke="#cfd8dc"/>
+      <text x="70" y="331" text-anchor="middle">11</text><text x="200" y="331" text-anchor="middle">66</text><text x="420" y="331" text-anchor="middle">157 ?5@5AB0=>2:8 (LSB)</text><text x="640" y="331" text-anchor="middle">11</text><text x="770" y="331" text-anchor="middle">66</text><text x="930" y="331" text-anchor="middle">LSB</text>
+      <rect x="0" y="340" width="1020" height="26" fill="#fff" stroke="#cfd8dc"/>
+      <text x="70" y="357" text-anchor="middle">12</text><text x="200" y="357" text-anchor="middle">14</text><text x="420" y="357" text-anchor="middle">157 ?5@5AB0=>2:8 (LSB)</text><text x="640" y="357" text-anchor="middle">12</text><text x="770" y="357" text-anchor="middle">14</text><text x="930" y="357" text-anchor="middle">LSB</text>
+      <rect x="0" y="366" width="1020" height="26" fill="#fafafa" stroke="#cfd8dc"/>
+      <text x="70" y="383" text-anchor="middle">13</text><text x="200" y="383" text-anchor="middle">17</text><text x="420" y="383" text-anchor="middle">157 ?5@5AB0=>2:8 (LSB)</text><text x="640" y="383" text-anchor="middle">13</text><text x="770" y="383" text-anchor="middle">17</text><text x="930" y="383" text-anchor="middle">LSB</text>
+      <rect x="0" y="392" width="1020" height="26" fill="#fff" stroke="#cfd8dc"/>
+      <text x="70" y="409" text-anchor="middle">14</text><text x="200" y="409" text-anchor="middle">40</text><text x="420" y="409" text-anchor="middle">157 ?5@5AB0=>2:8 (LSB)</text><text x="640" y="409" text-anchor="middle">14</text><text x="770" y="409" text-anchor="middle">40</text><text x="930" y="409" text-anchor="middle">LSB</text>
+      <rect x="0" y="418" width="1020" height="26" fill="#fafafa" stroke="#cfd8dc"/>
+      <text x="70" y="435" text-anchor="middle">15</text><text x="200" y="435" text-anchor="middle">00</text><text x="420" y="435" text-anchor="middle">157 ?5@5AB0=>2:8 (LSB)</text><text x="640" y="435" text-anchor="middle">15</text><text x="770" y="435" text-anchor="middle">00</text><text x="930" y="435" text-anchor="middle">LSB</text>
+    </g>
+  </g>
+
+  <!-- reorder formula -->
+  <g transform="translate(40, 820)">
+    <rect x="0" y="0" width="1020" height="72" rx="6" fill="#f5f5f5" stroke="#b0bec5"/>
+    <text x="16" y="22" class="hdr">$C=:F8O reorder() 4;O MSB (BaseKeyGen / UuidKeyGen)</text>
+    <text x="16" y="42" class="note">E>4 (RFC):  b0 b1 b2 b3 | b4 b5 | b6 b7  í  KE>4 (YDB MSB):  b3 b2 b1 b0 | b5 b4 | b7 b6</text>
+    <text x="16" y="60" class="note">@8<5@: 01 02 03 04 05 06 07 08  í  04 03 02 01 06 05 08 07 ∑ Proto: low128 = MSB-?5@5AB0=>2:0, high128 = bswap(LSB)</text>
+  </g>
+</svg>
