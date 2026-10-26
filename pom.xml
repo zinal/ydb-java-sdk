@@ -19,6 +19,7 @@
         <module>common</module>
         <module>core</module>
         <module>table</module>
+        <module>cdc</module>
         <module>scheme</module>
         <module>topic</module>
         <module>query</module>
