@@ -53,6 +53,12 @@ After that you can specify the SDK modules that your project needs in the depend
         <artifactId>ydb-sdk-table</artifactId>
     </dependency>
 
+    <!-- CDC JSON and binary record parser -->
+    <dependency>
+        <groupId>tech.ydb</groupId>
+        <artifactId>ydb-sdk-cdc</artifactId>
+    </dependency>
+
     <!-- Query service client -->
     <dependency>
         <groupId>tech.ydb</groupId>
